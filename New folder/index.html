@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جامعة AUSI: رحلة النحو الكبرى</title>
+    <!-- Tailwind CSS for modern responsive utility styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Premium Arabic Calligraphy style font -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body { 
+            font-family: 'Cairo', 'Amiri', serif; 
+            background-color: #0b0f19; 
+            background-image: radial-gradient(circle at top right, #1e1b4b 0%, #020617 100%);
+            overflow-x: hidden; 
+        }
+        .glass { 
+            background: rgba(255, 255, 255, 0.06); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); 
+        }
+        .glass-dark {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        /* Custom smooth scrollbar for reviews */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+        /* Animation keyframes */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        .float-anim {
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes pulse-soft {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.4; }
+        }
+        .pulse-bg {
+            animation: pulse-soft 8s ease-in-out infinite;
+        }
+        
+        /* Strict styling to apply Amiri font only during Quiz phase */
+        #quiz-screen {
+            font-family: 'Amiri', serif !important;
+        }
+
+        /* Interactive Rotating Gradient Border/Lamp for Quiz Box */
+        .quiz-glow-card {
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            border: none !important; /* Override normal transparent white border */
+        }
+        .quiz-glow-card::before {
+            content: '';
+            position: absolute;
+            z-index: -2;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0%,
+                #3b82f6 25%,   /* Vibrant Blue */
+                #a855f7 50%,   /* Elegant Purple */
+                #6366f1 75%,   /* Brilliant Indigo */
+                transparent 100%
+            );
+            animation: rotate-gradient 4.5s linear infinite;
+        }
+        .quiz-glow-card::after {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            inset: 3px; /* Determines thin border width of 3px */
+            background: rgba(15, 23, 42, 0.92); /* Deep beautiful dark background keeping text readable */
+            border-radius: calc(2rem - 3px); /* Match container outer rounded-2xl radius minus border width */
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        @keyframes rotate-gradient {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        #scene-bg {
+            background-image: url('image_1.png');
+            background-size: 500% 100%;
+            background-repeat: no-repeat;
+            filter: brightness(0.35) contrast(1.1) saturate(1.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen w-screen flex flex-col items-center justify-between p-4 md:p-8 text-white relative">
+
+    <!-- Ambient background glows -->
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none pulse-bg"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none pulse-bg" style="animation-delay: 4s;"></div>
+
+    <!-- Cinematic Transition Overlay -->
+    <div id="transition-overlay" class="fixed inset-0 bg-slate-950 z-50 pointer-events-none opacity-0 transition-opacity duration-500"></div>
+
+    <!-- Main Container -->
+    <main class="w-full max-w-5xl flex-grow flex items-center justify-center z-10 my-4">
+        
+        <!-- DASHBOARD / EPISODE SELECTOR VIEW -->
+        <div id="dashboard-view" class="w-full glass rounded-[2.5rem] p-6 md:p-10 flex flex-col justify-between min-h-[650px] relative overflow-hidden transition-all duration-500">
+            <!-- Header decor -->
+            <div class="absolute top-0 right-0 w-48 h-48 bg-gradient-to-b from-blue-500/10 to-transparent rounded-bl-full pointer-events-none"></div>
+            
+            <div class="relative z-10">
+                <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4 border-b border-white/10 pb-6">
+                    <div>
+                        <div class="flex items-center gap-3">
+                            <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs font-bold border border-blue-500/30">أكاديمية اللغة العربية</span>
+                            <span class="text-xs text-slate-400">الإصدار 3.0 (نسخة الآفاتار التفاعلية)</span>
+                        </div>
+                        <h1 class="text-4xl md:text-5xl font-black mt-2 bg-clip-text text-transparent bg-gradient-to-l from-white via-blue-100 to-blue-300 tracking-tight">جامعة AUSI: رحلة النحو الكبرى</h1>
+                        <p class="text-slate-400 mt-2 text-sm md:text-base">رافق "هنا" و "أمرُ" في مغامرتهم التعليمية لحماية لغتنا العربية الجميلة واستعادة المفاتيح الأربعة.</p>
+                    </div>
+                    <!-- Global score display -->
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-4 flex items-center gap-4">
+                        <div class="w-12 h-12 bg-yellow-500/20 rounded-xl flex items-center justify-center text-2xl border border-yellow-500/30">🏆</div>
+                        <div>
+                            <div class="text-xs text-slate-400 font-bold">التقدم الإجمالي</div>
+                            <div class="text-xl font-black text-yellow-400" id="global-progress-txt">0% مکتمل</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Episodes Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="episodes-container">
+                    <!-- Cards will be populated here via JavaScript -->
+                </div>
+            </div>
+
+            <!-- Footer info and reset button -->
+            <div class="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500 relative z-10">
+                <p>© 2026 جامعة AUSI لعلوم اللغة العربية. جميع الحقوق محفوظة.</p>
+                <button onclick="resetProgress()" class="px-4 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-xl border border-red-500/20 hover:border-red-500/40 transition-all font-semibold">إعادة تعيين التقدم 🔄</button>
+            </div>
+        </div>
+
+        <!-- CORE GAMEPLAY VIEW (Dialogue, Quiz, Review, Final Victory Screen) -->
+        <div id="gameplay-view" class="hidden w-full rounded-[2.5rem] overflow-hidden shadow-2xl relative min-h-[650px] flex flex-col justify-between transition-all duration-700">
+            
+            <!-- Dynamic Scene Background Layer -->
+            <div id="scene-bg" class="absolute inset-0 transition-all duration-1000 z-0"></div>
+            
+            <!-- Game HUD / Top Bar -->
+            <div class="relative z-10 w-full p-6 flex justify-between items-center bg-gradient-to-b from-black/60 to-transparent">
+                <button onclick="exitToDashboard()" class="px-4 py-2 bg-black/40 hover:bg-black/60 text-white rounded-xl border border-white/10 hover:border-white/20 transition-all font-semibold flex items-center gap-2 text-sm">
+                    <span>🏠</span> العودة للرئيسية
+                </button>
+                <div class="flex items-center gap-3">
+                    <span id="hud-location" class="px-4 py-2 bg-black/40 text-slate-200 border border-white/10 rounded-xl text-sm font-bold">حرم جامعة AUSI</span>
+                    <span id="hud-episode-tag" class="px-4 py-2 bg-blue-500 text-white rounded-xl text-sm font-bold shadow-lg shadow-blue-500/20">الحلقة 1</span>
+                </div>
+            </div>
+
+            <!-- Main Content Display Zone (Handles dynamic screens inside gameplay) -->
+            <div class="relative z-10 flex-grow flex flex-col justify-center px-4 md:px-10 pb-6">
+                
+                <!-- DIALOGUE SCREEN -->
+                <div id="dialogue-screen" class="w-full mt-auto mb-4 transition-all duration-500">
+                    <!-- Responsive Grid: Avatar + Conversation Box -->
+                    <div id="dialogue-box" class="glass rounded-3xl p-6 md:p-8 text-white relative min-h-[260px] flex flex-col md:flex-row gap-6 items-center">
+                        
+                        <!-- Avatar rendering container -->
+                        <div id="avatar-container" class="w-28 h-28 md:w-36 md:h-36 flex-shrink-0 bg-white/5 rounded-2xl border border-white/15 p-2 flex items-center justify-center float-anim transition-all duration-300">
+                            <!-- Dynamic SVG inserted here -->
+                        </div>
+
+                        <!-- Dialogue Texts & Navigation -->
+                        <div class="flex-grow flex flex-col justify-between min-h-[140px] w-full">
+                            <div class="relative">
+                                <!-- Speaker name tag -->
+                                <span id="speaker-name" class="inline-block bg-blue-600 text-white px-6 py-1 rounded-full font-black shadow-lg text-md tracking-wide border border-blue-400/30 mb-3">هنا</span>
+                                <p id="dialogue-text" class="text-xl md:text-2xl text-slate-100 leading-relaxed font-semibold transition-all duration-300 pr-1"></p>
+                            </div>
+                            
+                            <!-- Navigation -->
+                            <div class="flex justify-end mt-4">
+                                <button id="next-dialogue-btn" onclick="nextDialogue()" class="bg-blue-600 hover:bg-blue-500 hover:scale-105 active:scale-95 text-white px-10 py-3 rounded-full font-black shadow-lg shadow-blue-600/20 transition-all text-lg flex items-center gap-2">
+                                    التالي ➔
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- QUIZ SCREEN -->
+                <div id="quiz-screen" class="hidden w-full max-w-3xl mx-auto my-auto py-4 transition-all duration-500">
+                    <div class="glass quiz-glow-card p-6 md:p-8 rounded-[2rem] text-center shadow-2xl relative border border-white/10">
+                        
+                        <!-- Mini Avatar HUD in quiz for real-time expression changes! -->
+                        <div class="flex items-center gap-4 mb-6 justify-center md:justify-between border-b border-white/5 pb-4">
+                            <div class="flex items-center gap-3">
+                                <div id="quiz-avatar-container" class="w-14 h-14 bg-white/10 rounded-full border border-white/20 p-1 flex items-center justify-center">
+                                    <!-- Dynamic SVG placeholder during quiz -->
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-xs font-bold text-slate-400" id="quiz-avatar-name">المساعد</div>
+                                    <div class="text-[10px] text-green-400" id="quiz-avatar-status">يدعمك الآن!</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="text-xs font-bold text-slate-400 bg-white/5 px-3 py-1.5 rounded-lg border border-white/5" id="q-category">المبتدأ والخبر</div>
+                                <span id="quiz-q-count" class="text-sm font-bold text-blue-300 bg-blue-500/10 px-4 py-1.5 rounded-xl border border-blue-500/20">السؤال 1 / 10</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Question Display -->
+                        <div id="quiz-question-container" class="mb-6">
+                            <h2 id="quiz-question-text" class="text-2xl md:text-3xl font-black text-white leading-relaxed p-6 bg-white/5 rounded-2xl border border-white/10 shadow-inner">ما هو المبتدأ؟</h2>
+                        </div>
+
+                        <!-- Special interactive "Fill-in-the-Blank" slot (if type is DnD) -->
+                        <div id="dnd-slot-container" class="hidden mb-6">
+                            <div class="flex justify-center items-center gap-4 p-6 bg-blue-950/40 rounded-2xl border border-dashed border-blue-500/40">
+                                <span id="dnd-text-pre" class="text-2xl font-bold"></span>
+                                <span id="dnd-drop-zone" class="px-6 py-2 bg-black/40 rounded-xl border-2 border-dashed border-slate-500 text-blue-300 text-2xl font-bold min-w-[120px] transition-all duration-300 shadow-inner">?</span>
+                                <span id="dnd-text-post" class="text-2xl font-bold"></span>
+                            </div>
+                        </div>
+                        
+                        <!-- Options List -->
+                        <div id="quiz-options-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Dynamic buttons go here -->
+                        </div>
+                        
+                        <!-- Dynamic feedback alert -->
+                        <div id="quiz-feedback" class="mt-6 text-xl font-bold hidden transition-all duration-300 transform scale-95 p-3 rounded-xl"></div>
+                    </div>
+                </div>
+
+                <!-- REVIEW SCREEN -->
+                <div id="review-screen" class="hidden w-full max-w-3xl mx-auto my-auto py-4 transition-all duration-500">
+                    <div class="glass p-6 md:p-8 rounded-[2rem] shadow-2xl border border-white/10 flex flex-col max-h-[550px]">
+                        <h2 id="review-title" class="text-3xl font-black mb-2 text-center text-yellow-400">انتهت الحلقة!</h2>
+                        <p id="review-score-txt" class="text-xl text-center text-slate-300 mb-6">لقد حصلت على 0 من 10</p>
+                        
+                        <!-- Question Breakdown List -->
+                        <div id="review-breakdown" class="space-y-4 overflow-y-auto custom-scrollbar pr-2 pl-1 mb-6 flex-grow">
+                            <!-- Populate list -->
+                        </div>
+                        
+                        <div class="flex gap-4">
+                            <button onclick="exitToDashboard()" class="flex-1 py-4 bg-slate-800 hover:bg-slate-700 active:scale-95 text-white font-bold rounded-2xl shadow-lg border border-white/5 transition-all text-center">
+                                العودة للمكتبة 📋
+                            </button>
+                            <button id="review-action-btn" class="flex-1 py-4 bg-blue-600 hover:bg-blue-500 hover:scale-102 active:scale-95 text-white font-black rounded-2xl shadow-lg shadow-blue-600/20 transition-all text-center">
+                                التالي ➔
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- SYSTEM ALERTS LAYER (Non-blocking beautiful notifications) -->
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 glass px-6 py-3 rounded-full text-white font-bold z-50 transform translate-y-20 opacity-0 transition-all duration-500 shadow-xl border border-white/15 flex items-center gap-3">
+        <span id="toast-icon">✨</span>
+        <span id="toast-msg">تم حفظ تقدمك بنجاح!</span>
+    </div>
+
+    <script>
+        // EPISODES & PLOTS DEFINITIONS
+        const episodesData = [
+            {
+                id: 1,
+                title: "الحلقة الأولى: بوابة المعرفة",
+                subtitle: "البحث عن المبتدأ المفقود",
+                themeClass: "bg-gradient-to-br from-[#1e3a8a] via-[#1e40af] to-[#0f172a]",
+                location: "مكتب الأستاذ كي",
+                progressKey: "ep1_score",
+                script: [
+                    { name: "هنا", text: "أمرُ! انظر إلى هذا المبنى! جامعة AUSI! أخيراً وصلنا! حلمي في تعلم النحو هنا أصبح حقيقة!" },
+                    { name: "أمرُ", text: "هنا، أرجوك لا تركضي. نحن في الحرم الجامعي. وجدولنا يقول يجب أن نبلغ عن وصولنا لمكتب أستاذ النحو أولاً." },
+                    { name: "هنا", text: "أنت دائماً جدي! هيا! سمعت أن الأستاذ كي أسطورة! هو حارس 'كتاب النحو السري'!" },
+                    { name: "الأستاذ كي", text: "لا... إنه ليس موجوداً. المبتدأ مفقود. الخبر ضائع. كل شيء تدمر!" },
+                    { name: "أمرُ", text: "أستاذ؟ نحن أمرُ وهنا، طلاب جدد. هل هناك مشكلة؟" },
+                    { name: "الأستاذ كي", text: "آه! طلاب جدد! جيد أنكم جئتم. انظروا إلى هذه السبورة! النظام اللغوي هنا تعرض للتخريب. 'الكتاب السري' سُرق! انظروا، هذه الجملة: 'الطالبُ ...'. إنها تحتاج لشيء لتكتمل. بدون المبتدأ الصحيح، المعنى معلق!" },
+                    { name: "هنا", text: "المبتدأ مفقود؟ هذا... هذا خطير جداً على هيكل الجملة!" },
+                    { name: "أمرُ", text: "أستاذ، ماذا يجب أن نفعل؟" },
+                    { name: "الأستاذ كي", text: "فقط الطالب الذي يتقن علم المبتدأ يمكنه استعادة هذه الجملة. عليكم العثور على 'مفاتيح النحو الأربعة'. المفتاح الأول في أيديكم إذا استطعتم حل هذا التحدي." },
+                    { name: "هنا", text: "أمرُ، يجب أن نساعد الأستاذ. هيا نُرِه ما تعلمناه!" },
+                    { name: "أمرُ", text: "حسناً، نحن مستعدون يا أستاذ." }
+                ],
+                // 20 Questions Bank for Episode 1 (Includes user-requested random bank)
+                questions: [
+                    { q: "أي كلمة هي المبتدأ في الجملة: (القلمُ جديدٌ)؟", a: ["القلمُ", "جديدٌ", "لا يوجد"], correct: 0 },
+                    { q: "المبتدأ هو اسم...", a: ["مرفوع", "منصوب", "مجرور"], correct: 0 },
+                    { q: "في الجملة: (البيتُ كبيرٌ)، المبتدأ هو...", a: ["البيتُ", "كبيرٌ", "كبير"], correct: 0 },
+                    { q: "الجملة الاسمية تبدأ عادةً بـ...", a: ["اسم", "فعل", "حرف"], correct: 0 },
+                    { q: "أي الجمل التالية تبدأ بمبتدأ؟", a: ["المسجدُ واسعٌ", "كتبَ الطالبُ", "في البيتِ رجلٌ"], correct: 0 },
+                    { q: "المبتدأ يحتاج إلى...", a: ["خبر", "فاعل", "مفعول به"], correct: 0 },
+                    { q: "اختر المبتدأ في الجملة: (السماءُ صافيةٌ)", a: ["السماءُ", "صافيةٌ", "لا يوجد"], correct: 0 },
+                    { q: "علامة رفع المبتدأ في الأصل هي...", a: ["الضمة", "الفتحة", "الياء"], correct: 0 },
+                    { q: "في الجملة: (السيارةُ سريعةٌ)، كلمة (السيارةُ) هي...", a: ["مبتدأ", "خبر", "فاعل"], correct: 0 },
+                    { q: "أي الكلمات الآتية تصلح أن تكون مبتدأ؟", a: ["الطالبُ", "كتبَ", "إلى"], correct: 0 },
+                    { q: "هل يأتي المبتدأ قبل الخبر غالباً؟", a: ["نعم", "لا", "أحياناً فقط"], correct: 0 },
+                    { q: "في الجملة: (المعلمُ حاضرٌ)، كلمة (المعلمُ) هي...", a: ["مبتدأ", "خبر", "صفة"], correct: 0 },
+                    { q: "المبتدأ يكون غالباً...", a: ["معرفة", "فعل", "حرف"], correct: 0 },
+                    { q: "أي الجمل الآتية جملة اسمية؟", a: ["الولدُ نشيطٌ", "ذهبَ الولدُ", "اجلسْ هنا"], correct: 0 },
+                    { q: "في الجملة: (الكتابُ مفيدٌ)، المبتدأ مرفوع بـ...", a: ["الضمة", "الفتحة", "الكسرة"], correct: 0 },
+                    { q: "اختر المبتدأ في الجملة: (الزهرةُ جميلةٌ)", a: ["الزهرةُ", "جميلةٌ", "لا يوجد"], correct: 0 },
+                    { q: "أي مما يلي ليس مبتدأ؟", a: ["مجتهدٌ", "الطالبُ", "العلمُ"], correct: 0 },
+                    { q: "إذا بدأنا الجملة باسم فهي غالباً...", a: ["جملة اسمية", "جملة فعلية", "شبه جملة"], correct: 0 },
+                    { q: "في الجملة: (الطبيبُ ماهرٌ)، كلمة (الطبيبُ) هي...", a: ["مبتدأ", "خبر", "فاعل"], correct: 0 },
+                    { q: "المبتدأ هو أحد ركني...", a: ["الجملة الاسمية", "الجملة الفعلية", "الجملة الشرطية"], correct: 0 }
+                ]
+            },
+            {
+                id: 2,
+                title: "الحلقة الثانية: أثر الخبر الضائع",
+                subtitle: "ترميم الجمل بالمكتبة الكبرى",
+                themeClass: "bg-gradient-to-br from-[#1e1b4b] via-[#312e81] to-[#020617]",
+                location: "مكتبة الأرشيف المحظور",
+                progressKey: "ep2_score",
+                script: [
+                    { name: "هنا", text: "أمرُ، نحن لا يجب أن نكون في قسم 'الأرشيف المحظور'. ولكن... انظر إلى هذا الرف! هناك كتب كثيرة جملها غير مكتملة." },
+                    { name: "أمرُ", text: "أنتِ محقة يا هنا. انظري لهذا الكتاب: 'العلمُ ...'. لديه مبتدأ، لكن لا يوجد خبر. بدون الخبر، العلم لا معنى له." },
+                    { name: "هنا", text: "الأستاذ كي قال، إذا لم نصلح هذه الجمل، المكتبة ستفقد كل معلوماتها!" },
+                    { name: "حارس المكتبة", text: "باحثو العلم... إذا أردتم 'مفتاح الخبر'، عليكم إثبات أنكم تستطيعون إكمال ما لم يكتمل." },
+                    { name: "أمرُ", text: "هنا، استعدي. يجب أن نجد الخبر الصحيح لكل مبتدأ هنا." },
+                    { name: "هنا", text: "حسناً! لنبدأ العمل!" }
+                ],
+                questions: [
+                    { q: "العلمُ ...", a: ["نورٌ", "كتابٌ", "قلمٌ"], correct: 0 },
+                    { q: "الطالبُ ...", a: ["في الفصلِ", "مبتسمٌ", "مجتهدٌ"], correct: 2 },
+                    { q: "محمدٌ ...", a: ["يدرسُ", "جميلٌ", "مكتبةٌ"], correct: 0 },
+                    { q: "الكتابُ ...", a: ["فوقَ المكتبِ", "جديدٌ", "مفيدٌ"], correct: 2 },
+                    { q: "الطالبانِ ...", a: ["مجتهدانِ", "مجتهدٌ", "في المدرسة"], correct: 0 },
+                    { q: "الطلابُ ...", a: ["مجتهدون", "مجتهدٌ", "في البيت"], correct: 0 },
+                    { q: "الحديقةُ ...", a: ["أزهارُها جميلةٌ", "جميلةٌ", "واسعةٌ"], correct: 0 },
+                    { q: "العصفورُ ...", a: ["على الشجرةِ", "يطيرُ", "جميلٌ"], correct: 2 },
+                    { q: "السماءُ ...", a: ["واسعةٌ", "بعيدةٌ", "صافيةٌ"], correct: 2 },
+                    { q: "نوع الخبر في جملة: (المعلمُ في الفصلِ)؟", a: ["شبه جملة", "مفرد", "جملة اسمية"], correct: 0 }
+                ]
+            },
+            {
+                id: 3,
+                title: "الحلقة الثالثة: أسرار مختبر اللغة",
+                subtitle: "تحليل البيانات وهياكل الجمل",
+                themeClass: "bg-gradient-to-br from-[#0f172a] via-[#111827] to-[#020617]",
+                location: "مختبر النحو الرقمي",
+                progressKey: "ep3_score",
+                script: [
+                    { name: "أمرُ", text: "هنا، انظري! هذا مختبر النحو! البيانات هنا تتدفق كالجملة الفعلية." },
+                    { name: "هنا", text: "مذهل! انظر إلى هذه الشاشة. مكتوب: 'تتكون الجملة من نوعين: اسمية وفعلية'." },
+                    { name: "أمرُ", text: "أستاذنا قال، لكي نفهم تركيب اللغة، يجب أن نفرق بينهما بدقة." },
+                    { name: "الذكاء الاصطناعي", text: "أهلاً بكما في المختبر. أنا 'حاسب النحو'. هل أنتما مستعدان لاختبار سرعة معالجة المعلومات؟" },
+                    { name: "هنا", text: "نحن مستعدون! لنثبت أننا نعرف الفرق بين الجملة الاسمية والفعلية!" }
+                ],
+                questions: [
+                    { q: "العلمُ نورٌ. نوع الخبر هنا مفرد.", a: ["صح", "خطأ"], correct: 0 },
+                    { q: "المعلمُ في الفصلِ. نوع الخبر هنا مفرد.", a: ["صح", "خطأ"], correct: 1 },
+                    { q: "الجملة الاسمية تبدأ دائماً باسم.", a: ["صح", "خطأ"], correct: 0 },
+                    { q: "الجملة الفعلية تبدأ باسم.", a: ["صح", "خطأ"], correct: 1 },
+                    { q: "محمدٌ يدرسُ. الخبر هنا جملة فعلية.", a: ["صح", "خطأ"], correct: 0 },
+                    { q: "الحديقةُ أزهارُها جميلةٌ. الخبر هنا مفرد.", a: ["صح", "خطأ"], correct: 1 },
+                    { q: "الطالبُ مجتهدٌ. هذه جملة اسمية.", a: ["صح", "خطأ"], correct: 0 },
+                    { q: "في الدارِ رجلٌ. هذه جملة فعلية.", a: ["صح", "خطأ"], correct: 1 },
+                    { q: "يذهبُ محمدٌ إلى المدرسة. هذه جملة فعلية.", a: ["صح", "خطأ"], correct: 0 },
+                    { q: "المبتدأ دائماً مجرور.", a: ["صح", "خطأ"], correct: 1 }
+                ]
+            },
+            {
+                id: 4,
+                title: "الحلقة الرابعة: ديوان التحويل",
+                subtitle: "تأثير إن وأخواتها وكان وأخواتها",
+                themeClass: "bg-gradient-to-br from-[#3b0764] via-[#1e1b4b] to-[#020617]",
+                location: "ديوان التحويل اللغوي",
+                progressKey: "ep4_score",
+                script: [
+                    { name: "هنا", text: "أمرُ، انظر إلى هذه الأجهزة! إنها تحول الكلمات من صيغة إلى أخرى!" },
+                    { name: "أمرُ", text: "هذا 'ديوان التحويل'. هنا نتدرب على تحويل الجمل من المذكر إلى المؤنث، ومن المفرد إلى المثنى والجمع." },
+                    { name: "هنا", text: "يبدو الأمر معقداً، لكنه ممتع! لنبدأ التحويل!" },
+                    { name: "مراقب القاعة", text: "أهلاً بكما. أنا 'مراقب القاعة اللغوية'. هل أنتما مستعدان لتحويل الجمل بدقة وتجربة النواسخ؟" }
+                ],
+                questions: [
+                    { q: "ماذا يسمى المبتدأ بعد دخول (إنّ)؟", a: ["مبتدأ", "اسم إنّ", "فاعل", "اسم كان"], correct: 1 },
+                    { q: "ما هو حكم إعراب اسم (إنّ)؟", a: ["الرفع", "الجر", "النصب", "الجزم"], correct: 2 },
+                    { q: "ماذا يسمى الخبر بعد دخول (كان)؟", a: ["خبر كان", "خبر إنّ", "حال", "مفعول به"], correct: 0 },
+                    { q: "ما هو حكم إعراب خبر (كان)؟", a: ["الرفع", "النصب", "الجر", "السكون"], correct: 1 },
+                    { q: "حكم إعراب خبر (إنّ) هو:", a: ["النصب", "الجر", "الرفع", "السكون"], correct: 2 },
+                    { q: "حكم إعراب اسم (كان) هو:", a: ["النصب", "الرفع", "الجر", "الفتح"], correct: 1 },
+                    { q: "أي مما يلي من أخوات (إنّ)؟", a: ["أصبح", "ليس", "لعلّ", "صار"], correct: 2 },
+                    { q: "أي مما يلي من أخوات (كان)؟", a: ["ليت", "أصبح", "كأنّ", "لكنّ"], correct: 1 },
+                    { q: "إذا دخلت (إنّ) على جملة (الطالبُ مجتهدٌ)، تصبح:", a: ["إنَّ الطالبَ مجتهدٌ", "إنَّ الطالبُ مجتهدٌ", "إنَّ الطالبِ مجتهداً", "إنَّ الطالبَ مجتهداً"], correct: 0 },
+                    { q: "إذا دخلت (كان) على جملة (السماءُ صافيةٌ)، تصبح:", a: ["كانت السماءُ صافيةٌ", "كانت السماءُ صافيةً", "كانت السماءَ صافيةٌ", "كانت السماءَ صافيةً"], correct: 1 }
+                ]
+            },
+            {
+                id: 5,
+                title: "الحلقة الخامسة: الاختبار الأكبر",
+                subtitle: "امتحان التتويج أمام مدير الأكاديمية",
+                themeClass: "bg-gradient-to-br from-[#78350f] via-[#451a03] to-[#020617]",
+                location: "قاعة التتويج الكبرى",
+                progressKey: "ep5_score",
+                script: [
+                    { name: "المدير", text: "السلام عليكما يا بُنيّ. كيف حالكما في هذه القاعة المباركة؟" },
+                    { name: "أمرُ", text: "بخير وعافية يا مدير الأكاديمية، نشكرك على لطفك." },
+                    { name: "هنا", text: "نحن ممتنان جداً لهذه الفرصة، لقد كانت رحلة علمية مذهلة." },
+                    { name: "المدير", text: "يسرني سماع ذلك. لقد تابعتُ بشغف تقدمكما المذهل في جميع قاعات الأكاديمية، من المكتبة إلى المختبر." },
+                    { name: "المدير", text: "الآن، لم يتبقَ سوى الخطوة الأخيرة. هذا هو 'الاختبار النهائي'. إذا اجتزتماه، ستصبحان من كبار الطلبة في هذه الأكاديمية!" },
+                    { name: "أمرُ", text: "نحن مستعدون يا سيدي المدير. لقد تعلمنا الكثير." },
+                    { name: "هنا", text: "نعم، لنثبت استحقاقنا لهذا اللقب!" }
+                ],
+                questions: [
+                    { type: 'mcq', q: "ما هو حكم إعراب المبتدأ؟", a: ["الرفع", "النصب", "الجر"], correct: 0 },
+                    { type: 'mcq', q: "أي من الحروف التالية من أخوات (إنّ)؟", a: ["أصبح", "ليت", "صار"], correct: 1 },
+                    { type: 'mcq', q: "ما نوع الخبر في: (المعلمُ في الفصلِ)؟", a: ["مفرد", "شبه جملة", "جملة فعلية"], correct: 1 },
+                    { type: 'mcq', q: "حكم اسم (كان) هو:", a: ["الرفع", "النصب", "الجر"], correct: 0 },
+                    { type: 'mcq', q: "ماذا يسمى المبتدأ والخبر بعد دخول (إنّ)؟", a: ["اسم وخبر إنّ", "فاعل ومفعول به", "مبتدأ وخبر"], correct: 0 },
+                    { type: 'mcq', q: "الجملة التي تبدأ بفعل هي جملة:", a: ["اسمية", "فعلية", "ظرفية"], correct: 1 },
+                    { type: 'mcq', q: "ماذا يسمى الخبر بعد دخول (كان)؟", a: ["خبر كان", "اسم كان", "حالية"], correct: 0 },
+                    { type: 'mcq', q: "حكم إعراب خبر (إنّ) هو:", a: ["الرفع", "النصب", "الجر"], correct: 0 },
+                    { type: 'mcq', q: "أصل الجملة الاسمية يتكون من:", a: ["فعل وفاعل", "مبتدأ وخبر", "حرف واسم"], correct: 1 },
+                    { type: 'mcq', q: "أي من أخوات (كان) تدل على الوقت؟", a: ["أصبح", "ليس", "ليت"], correct: 0 },
+                    { type: 'tf', q: "المبتدأ دائماً مرفوع.", a: ["صح", "خطأ"], correct: 0 },
+                    { type: 'tf', q: "الخبر لا يطابق المبتدأ في العدد.", a: ["صح", "خطأ"], correct: 1 },
+                    { type: 'tf', q: "تدخل (إنّ) على الجملة الاسمية.", a: ["صح", "خطأ"], correct: 0 },
+                    { type: 'tf', q: "الجملة الفعلية لا تبدأ بفعل.", a: ["صح", "خطأ"], correct: 1 },
+                    { type: 'tf', q: "شبه الجملة قد يكون جار ومجرور.", a: ["صح", "خطأ"], correct: 0 },
+                    { type: 'dnd', q: "إنَّ الطالبَ ______", pre: "إنَّ الطالبَ", post: "مجتهدٌ", a: ["مجتهدٌ", "مجتهداً"], correct: 0 },
+                    { type: 'dnd', q: "كانَ الجوُّ ______", pre: "كانَ الجوُّ", post: "جميلاً", a: ["جميلٌ", "جميلاً"], correct: 1 },
+                    { type: 'dnd', q: "العلمُ ______", pre: "العلمُ", post: "نورٌ", a: ["نورٌ", "نوراً"], correct: 0 },
+                    { type: 'dnd', q: "______ الطالبُ", pre: "", post: "الطالبُ", a: ["ذهبَ", "ذهبَت"], correct: 0 },
+                    { type: 'dnd', q: "______ الطالبةُ", pre: "", post: "الطالبةُ", a: ["جاءَ", "جاءت"], correct: 1 }
+                ]
+            }
+        ];
+
+        // GAME STATE OBJECT
+        let state = {
+            currentEpisode: null,
+            unlockedEpisodes: [1], 
+            dialogueIndex: 0,
+            currentQuestionIndex: 0,
+            score: 0,
+            shuffledQuestions: [],
+            userAnswers: [],
+            selectedDndAnswer: null
+        };
+    </script>
+
+    <script>
+        // PROCEDURAL AVATAR RENDERER (Clean Inline SVGs with states: normal, happy, confused)
+        function getAvatarSVG(characterName, stateType = 'normal') {
+            const skinTone = "#ffd4b2";
+            const hanaPink = "#ec4899";
+            const amruTeal = "#0d9488";
+            const elderGold = "#d97706";
+            
+            let eyesPath = `<ellipse cx="40" cy="45" rx="3" ry="4" fill="#0f172a"/><ellipse cx="60" cy="45" rx="3" ry="4" fill="#0f172a"/>`;
+            let mouthPath = `<path d="M44 60 Q50 64 56 60" stroke="#0f172a" stroke-width="2.5" stroke-linecap="round" fill="none"/>`;
+            let dynamicDetail = "";
+
+            if (stateType === 'happy') {
+                eyesPath = `
+                    <path d="M36 46 Q40 40 44 46" stroke="#059669" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    <path d="M56 46 Q60 40 64 46" stroke="#059669" stroke-width="3" fill="none" stroke-linecap="round"/>
+                `;
+                mouthPath = `<path d="M42 56 Q50 68 58 56 Z" fill="#dc2626"/>`; 
+                dynamicDetail = `<path d="M34 33 L38 35 M66 33 L62 35" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>`; 
+            } else if (stateType === 'confused') {
+                eyesPath = `
+                    <path d="M36 43 Q40 47 44 43" stroke="#dc2626" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                    <path d="M56 47 Q60 43 64 47" stroke="#dc2626" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                `;
+                mouthPath = `<path d="M43 60 Q47 55 51 61 T57 58" stroke="#0f172a" stroke-width="2.5" stroke-linecap="round" fill="none"/>`; 
+                dynamicDetail = `
+                    <ellipse cx="72" cy="38" rx="2" ry="4" fill="#3b82f6"/> 
+                    <path d="M72 41 L72 45" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/>
+                `;
+            }
+
+            if (characterName === "هنا") {
+                return `
+                <svg viewBox="0 0 100 100" class="w-full h-full">
+                    <path d="M25 25 C35 12, 65 12, 75 25 C84 35, 82 75, 78 85 C73 95, 27 95, 22 85 C18 75, 16 35, 25 25 Z" fill="${hanaPink}"/>
+                    <path d="M30 30 C38 20, 62 20, 70 30 C76 38, 76 68, 72 78 C68 85, 32 85, 28 78 C24 68, 24 38, 30 30 Z" fill="#db2777"/>
+                    <path d="M33 35 C38 28, 62 28, 67 35 C72 42, 72 65, 67 72 C62 78, 38 78, 33 72 C28 65, 28 42, 33 35 Z" fill="${skinTone}"/>
+                    ${eyesPath}
+                    ${mouthPath}
+                    ${dynamicDetail}
+                    <circle cx="36" cy="53" r="4" fill="#f472b6" opacity="0.6"/>
+                    <circle cx="64" cy="53" r="4" fill="#f472b6" opacity="0.6"/>
+                </svg>`;
+            } 
+            
+            if (characterName === "أمرُ") {
+                return `
+                <svg viewBox="0 0 100 100" class="w-full h-full">
+                    <path d="M25 40 C22 25, 78 25, 75 40 Z" fill="#1e293b"/>
+                    <circle cx="23" cy="50" r="6" fill="${skinTone}"/>
+                    <circle cx="77" cy="50" r="6" fill="${skinTone}"/>
+                    <path d="M28 35 C33 27, 67 27, 72 35 C76 43, 76 68, 72 75 C67 82, 33 82, 28 75 C24 68, 24 43, 28 35 Z" fill="${skinTone}"/>
+                    <path d="M26 35 C35 20, 55 18, 74 30 C64 25, 45 28, 34 38 Z" fill="#0f172a"/>
+                    <rect x="30" y="40" width="16" height="10" rx="3" fill="none" stroke="${amruTeal}" stroke-width="3"/>
+                    <rect x="54" y="40" width="16" height="10" rx="3" fill="none" stroke="${amruTeal}" stroke-width="3"/>
+                    <line x1="46" y1="45" x2="54" y2="45" stroke="${amruTeal}" stroke-width="3"/>
+                    ${eyesPath}
+                    ${mouthPath}
+                    ${dynamicDetail}
+                </svg>`;
+            }
+
+            if (characterName.includes("الأستاذ") || characterName.includes("المدير") || characterName.includes("حارس") || characterName.includes("مراقب")) {
+                return `
+                <svg viewBox="0 0 100 100" class="w-full h-full">
+                    <path d="M22 35 C22 15, 78 15, 78 35 Z" fill="${elderGold}"/>
+                    <path d="M28 38 C33 30, 67 30, 72 38 C76 46, 76 65, 72 72 C67 78, 33 78, 28 72 C24 65, 24 46, 28 38 Z" fill="${skinTone}"/>
+                    <path d="M28 60 C28 90, 72 90, 72 60 C64 72, 36 72, 28 60 Z" fill="#f1f5f9"/>
+                    <path d="M38 58 Q50 63 62 58" stroke="#e2e8f0" stroke-width="4" stroke-linecap="round" fill="none"/>
+                    <path d="M32 37 Q40 33 46 38" stroke="#f1f5f9" stroke-width="3" stroke-linecap="round" fill="none"/>
+                    <path d="M54 38 Q60 33 68 37" stroke="#f1f5f9" stroke-width="3" stroke-linecap="round" fill="none"/>
+                    ${eyesPath}
+                    ${mouthPath}
+                    ${dynamicDetail}
+                </svg>`;
+            }
+
+            return `
+            <svg viewBox="0 0 100 100" class="w-full h-full">
+                <rect x="20" y="20" width="60" height="52" rx="10" fill="#334155" stroke="#475569" stroke-width="3"/>
+                <rect x="25" y="25" width="50" height="42" rx="6" fill="#1e293b"/>
+                <path d="M40 72 L35 88 L65 88 L60 72 Z" fill="#475569"/>
+                ${stateType === 'happy' ? `
+                    <path d="M32 45 Q40 37 44 45" stroke="#10b981" stroke-width="4" fill="none" stroke-linecap="round"/>
+                    <path d="M56 45 Q64 37 68 45" stroke="#10b981" stroke-width="4" fill="none" stroke-linecap="round"/>
+                    <path d="M43 55 Q50 65 57 55" stroke="#10b981" stroke-width="3" fill="none" stroke-linecap="round"/>
+                ` : stateType === 'confused' ? `
+                    <path d="M32 48 L44 40 M32 40 L44 48" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M56 48 L68 40 M56 40 L68 48" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="38" y1="58" x2="62" y2="58" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
+                ` : `
+                    <circle cx="38" cy="42" r="4" fill="#38bdf8"/>
+                    <circle cx="62" cy="42" r="4" fill="#38bdf8"/>
+                    <path d="M42 55 Q50 50 58 55" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" fill="none"/>
+                `}
+            </svg>`;
+        }
+
+        // TRANSITION SYSTEM (Smoothly fades out, runs action, and fades back in)
+        function transitionScreen(onFadeCompleted) {
+            const overlay = document.getElementById('transition-overlay');
+            overlay.classList.remove('pointer-events-none');
+            overlay.classList.add('opacity-100');
+            
+            setTimeout(() => {
+                if (onFadeCompleted) onFadeCompleted();
+                setTimeout(() => {
+                    overlay.classList.remove('opacity-100');
+                    overlay.classList.add('pointer-events-none');
+                }, 100);
+            }, 450);
+        }
+
+        // AUDIO ENGINE USING WEB AUDIO API (Zero dependencies sound synthesizer)
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playSound(type) {
+            try {
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                if (type === 'correct') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); 
+                    osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.1); 
+                    gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.35);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.35);
+                } else if (type === 'wrong') {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(180, audioCtx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.4);
+                    gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.4);
+                } else if (type === 'click') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(1200, audioCtx.currentTime);
+                    gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.08);
+                } else if (type === 'unlock') {
+                    const now = audioCtx.currentTime;
+                    const notes = [261.63, 329.63, 392.00, 523.25]; 
+                    notes.forEach((freq, idx) => {
+                        const o = audioCtx.createOscillator();
+                        const g = audioCtx.createGain();
+                        o.connect(g);
+                        g.connect(audioCtx.destination);
+                        o.type = 'sine';
+                        o.frequency.setValueAtTime(freq, now + idx * 0.08);
+                        g.gain.setValueAtTime(0.1, now + idx * 0.08);
+                        g.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.2);
+                        o.start(now + idx * 0.08);
+                        o.stop(now + idx * 0.08 + 0.2);
+                    });
+                }
+            } catch (e) {
+                console.log("Audio contextual alert: ", e);
+            }
+        }
+    </script>
+
+    <script>
+        // SHUFFLING ALGORITHMS (Fisher-Yates)
+        function fisherYates(array) {
+            const copy = [...array];
+            for (let i = copy.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copy[i], copy[j]] = [copy[j], copy[i]];
+            }
+            return copy;
+        }
+
+        // PREPARE AND SHUFFLE OPTIONS INDIVIDUALLY
+        function prepareQuestion(qObj) {
+            if (qObj.type === 'tf') {
+                return {
+                    q: qObj.q,
+                    type: qObj.type,
+                    a: [...qObj.a],
+                    correct: qObj.correct,
+                    pre: qObj.pre,
+                    post: qObj.post
+                };
+            }
+
+            // Map each choice to check the correct index dynamically after shuffling
+            const items = qObj.a.map((opt, idx) => ({
+                text: opt,
+                isCorrect: idx === qObj.correct
+            }));
+
+            // Shuffle choice positions
+            const shuffledItems = fisherYates(items);
+            const newCorrectIndex = shuffledItems.findIndex(item => item.isCorrect);
+
+            return {
+                q: qObj.q,
+                type: qObj.type || 'mcq',
+                a: shuffledItems.map(item => item.text),
+                correct: newCorrectIndex,
+                pre: qObj.pre,
+                post: qObj.post
+            };
+        }
+
+        // INITIALIZATION
+        window.addEventListener('DOMContentLoaded', () => {
+            loadProgress();
+            renderDashboard();
+        });
+
+        // Load progress states
+        function loadProgress() {
+            const savedUnlocked = localStorage.getItem('ausi_unlocked');
+            if (savedUnlocked) {
+                state.unlockedEpisodes = JSON.parse(savedUnlocked);
+            } else {
+                state.unlockedEpisodes = [1];
+                saveUnlocked();
+            }
+            updateGlobalProgress();
+        }
+
+        function saveUnlocked() {
+            localStorage.setItem('ausi_unlocked', JSON.stringify(state.unlockedEpisodes));
+            updateGlobalProgress();
+        }
+
+        function updateGlobalProgress() {
+            let completed = 0;
+            episodesData.forEach(ep => {
+                if (localStorage.getItem(ep.progressKey)) completed++;
+            });
+            const pct = Math.round((completed / episodesData.length) * 100);
+            document.getElementById('global-progress-txt').innerText = `${pct}% مکتمل`;
+        }
+
+        function resetProgress() {
+            playSound('wrong');
+            if (confirm('هل أنت متأكد من رغبتك في إعادة تعيين اللعبة ومسح التقدم بالكامل؟')) {
+                localStorage.clear();
+                state.unlockedEpisodes = [1];
+                saveUnlocked();
+                renderDashboard();
+                showToast('🔄 تم مسح وإعادة تعيين تقدمك بنجاح!');
+            }
+        }
+
+        // Toast Messages helper
+        function showToast(msg, icon = '✨') {
+            const t = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = msg;
+            document.getElementById('toast-icon').innerText = icon;
+            t.classList.remove('translate-y-20', 'opacity-0');
+            t.classList.add('translate-y-0', 'opacity-100');
+            setTimeout(() => {
+                t.classList.remove('translate-y-0', 'opacity-100');
+                t.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // DASHBOARD RENDERING
+        function renderDashboard() {
+            const container = document.getElementById('episodes-container');
+            container.innerHTML = '';
+
+            episodesData.forEach((ep) => {
+                const isUnlocked = state.unlockedEpisodes.includes(ep.id);
+                const score = localStorage.getItem(ep.progressKey);
+                
+                const card = document.createElement('div');
+                card.className = `glass rounded-3xl p-6 flex flex-col justify-between border transition-all duration-300 relative overflow-hidden ${isUnlocked ? 'hover:-translate-y-2 hover:border-blue-500/50 hover:bg-white/10 cursor-pointer' : 'opacity-60 cursor-not-allowed'} border-white/10`;
+                
+                let scoreBadge = '';
+                if (score !== null) {
+                    scoreBadge = `<div class="absolute top-4 left-4 bg-green-500/20 text-green-300 border border-green-500/30 text-xs px-3 py-1 rounded-full font-bold z-20">مكتمل: ${score}/10</div>`;
+                } else if (isUnlocked) {
+                    scoreBadge = `<div class="absolute top-4 left-4 bg-yellow-500/20 text-yellow-300 border border-yellow-500/30 text-xs px-3 py-1 rounded-full font-bold z-20">متاح للعب</div>`;
+                } else {
+                    scoreBadge = `<div class="absolute top-4 left-4 bg-slate-500/20 text-slate-400 border border-slate-500/30 text-xs px-3 py-1 rounded-full font-bold z-20">🔒... مقفل</div>`;
+                }
+
+                const bgPosX = (ep.id - 1) * 25;
+                card.innerHTML = `
+                    ${scoreBadge}
+                    <div class="mt-8 mb-4">
+                        <div class="w-full h-32 rounded-2xl overflow-hidden relative border border-white/10 bg-slate-950">
+                            <div class="absolute inset-0 bg-cover bg-no-repeat transition-all duration-500 hover:scale-105" style="background-image: url('image_1.png'); background-size: 500% 100%; background-position: ${bgPosX}% 0%; filter: brightness(0.85);"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent"></div>
+                        </div>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="text-xl font-bold text-white mb-1">${ep.title}</h3>
+                        <p class="text-xs text-blue-300 mb-3">${ep.subtitle}</p>
+                        <p class="text-sm text-slate-400 font-light line-clamp-2">${ep.script[0].text}</p>
+                    </div>
+                    <div class="mt-6">
+                        ${isUnlocked 
+                            ? `<button onclick="startEpisode(${ep.id})" class="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg hover:shadow-blue-600/10">ابدأ الرحلة ➔</button>`
+                            : `<button disabled class="w-full py-3 bg-slate-800 text-slate-500 font-bold rounded-xl cursor-not-allowed">أكمل الحلقات السابقة</button>`
+                        }
+                    </div>
+                `;
+
+                if (isUnlocked) {
+                    card.addEventListener('click', (e) => {
+                        if (e.target.tagName !== 'BUTTON') {
+                            startEpisode(ep.id);
+                        }
+                    });
+                }
+                container.appendChild(card);
+            });
+        }
+
+        // GAMEPLAY MANAGEMENT
+        function startEpisode(epId) {
+            playSound('click');
+            const ep = episodesData.find(e => e.id === epId);
+            if (!ep) return;
+
+            // Use our cinematic transition instead of hard state jumps
+            transitionScreen(() => {
+                state.currentEpisode = ep;
+                state.dialogueIndex = 0;
+                state.currentQuestionIndex = 0;
+                state.score = 0;
+                state.userAnswers = [];
+
+                document.getElementById('dashboard-view').classList.add('hidden');
+                const gp = document.getElementById('gameplay-view');
+                gp.classList.remove('hidden');
+
+                const sBg = document.getElementById('scene-bg');
+                const bgPosX = (ep.id - 1) * 25;
+                sBg.style.backgroundPosition = `${bgPosX}% 0%`;
+                sBg.className = `absolute inset-0 transition-all duration-1000 z-0`;
+                
+                document.getElementById('hud-location').innerText = ep.location;
+                document.getElementById('hud-episode-tag').innerText = `الحلقة ${ep.id}`;
+
+                document.getElementById('dialogue-screen').classList.remove('hidden');
+                document.getElementById('quiz-screen').classList.add('hidden');
+                document.getElementById('review-screen').classList.add('hidden');
+
+                renderDialogue();
+            });
+        }
+
+        function exitToDashboard() {
+            playSound('click');
+            transitionScreen(() => {
+                document.getElementById('gameplay-view').classList.add('hidden');
+                document.getElementById('dashboard-view').classList.remove('hidden');
+                renderDashboard();
+                updateGlobalProgress();
+            });
+        }
+    </script>
+
+    <script>
+        // DIALOGUE SCREEN HANDLERS
+        function renderDialogue() {
+            const ep = state.currentEpisode;
+            const item = ep.script[state.dialogueIndex];
+
+            const speakerTag = document.getElementById('speaker-name');
+            speakerTag.innerText = item.name;
+            
+            if (item.name === "هنا") {
+                speakerTag.className = "inline-block bg-pink-600 text-white px-6 py-1 rounded-full font-black shadow-lg text-md border border-pink-400/30 mb-3";
+            } else if (item.name === "أمرُ") {
+                speakerTag.className = "inline-block bg-teal-600 text-white px-6 py-1 rounded-full font-black shadow-lg text-md border border-teal-400/30 mb-3";
+            } else if (item.name.includes("الأستاذ") || item.name.includes("المدير") || item.name.includes("حارس") || item.name.includes("مراقب")) {
+                speakerTag.className = "inline-block bg-amber-600 text-white px-6 py-1 rounded-full font-black shadow-lg text-md border border-amber-400/30 mb-3";
+            } else {
+                speakerTag.className = "inline-block bg-blue-600 text-white px-6 py-1 rounded-full font-black shadow-lg text-md border border-blue-400/30 mb-3";
+            }
+
+            document.getElementById('dialogue-text').innerText = `"${item.text}"`;
+
+            const avatarContainer = document.getElementById('avatar-container');
+            avatarContainer.classList.add('opacity-0');
+            setTimeout(() => {
+                avatarContainer.innerHTML = getAvatarSVG(item.name, 'normal');
+                avatarContainer.classList.remove('opacity-0');
+            }, 150);
+        }
+
+        function nextDialogue() {
+            playSound('click');
+            state.dialogueIndex++;
+            if (state.dialogueIndex < state.currentEpisode.script.length) {
+                renderDialogue();
+            } else {
+                transitionScreen(() => {
+                    startQuiz();
+                });
+            }
+        }
+
+        // QUIZ SCREEN HANDLERS
+        function startQuiz() {
+            const originalPool = [...state.currentEpisode.questions];
+            
+            // Randomly shuffle all questions inside the pool
+            let selectedPool = fisherYates(originalPool);
+            
+            // IF EPISODE 1, dynamically slice only 10 questions out of the 20-question bank
+            if (state.currentEpisode.id === 1) {
+                selectedPool = selectedPool.slice(0, 10);
+            }
+
+            // Shuffle options for each selected question
+            state.shuffledQuestions = selectedPool.map(q => prepareQuestion(q));
+            
+            document.getElementById('dialogue-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const qObj = state.shuffledQuestions[state.currentQuestionIndex];
+            const isDnD = qObj.type === 'dnd';
+
+            const catLabel = document.getElementById('q-category');
+            if (state.currentEpisode.id === 1) catLabel.innerText = "علم المبتدأ";
+            else if (state.currentEpisode.id === 2) catLabel.innerText = "علم الخبر";
+            else if (state.currentEpisode.id === 3) catLabel.innerText = "تحليل الجمل";
+            else if (state.currentEpisode.id === 4) catLabel.innerText = "النواسخ";
+            else catLabel.innerText = "مراجعة شاملة للجميع القواعد";
+
+            document.getElementById('quiz-q-count').innerText = `السؤال ${state.currentQuestionIndex + 1} / ${state.shuffledQuestions.length}`;
+            
+            const feedback = document.getElementById('quiz-feedback');
+            feedback.classList.add('hidden');
+
+            const optionsContainer = document.getElementById('quiz-options-grid');
+            optionsContainer.innerHTML = '';
+
+            state.selectedDndAnswer = null;
+
+            const quizAvatarBox = document.getElementById('quiz-avatar-container');
+            const quizAvatarLabel = document.getElementById('quiz-avatar-name');
+            const companionName = (state.currentEpisode.id % 2 === 0) ? "أمرُ" : "هنا";
+            quizAvatarLabel.innerText = companionName;
+            quizAvatarBox.innerHTML = getAvatarSVG(companionName, 'normal');
+
+            if (isDnD) {
+                document.getElementById('quiz-question-container').classList.add('hidden');
+                const slotContainer = document.getElementById('dnd-slot-container');
+                slotContainer.classList.remove('hidden');
+
+                document.getElementById('dnd-text-pre').innerText = qObj.pre || "";
+                document.getElementById('dnd-text-post').innerText = qObj.post || "";
+                
+                const dropZone = document.getElementById('dnd-drop-zone');
+                dropZone.innerText = "🔍 ؟";
+                dropZone.className = "px-6 py-2 bg-black/40 rounded-xl border-2 border-dashed border-blue-500/40 text-slate-400 text-2xl font-bold min-w-[120px] transition-all duration-300 shadow-inner";
+
+                qObj.a.forEach((opt, idx) => {
+                    const btn = document.createElement('button');
+                    btn.className = "w-full p-5 bg-white/5 hover:bg-blue-500/10 hover:border-blue-500/30 active:scale-98 rounded-2xl font-bold text-xl border border-white/10 transition-all text-center focus:outline-none focus:ring-2 focus:ring-blue-500";
+                    btn.innerText = opt;
+                    btn.onclick = () => {
+                        playSound('click');
+                        state.selectedDndAnswer = idx;
+                        dropZone.innerText = opt;
+                        dropZone.className = "px-6 py-2 bg-blue-500/20 rounded-xl border-2 border-solid border-blue-500 text-blue-300 text-2xl font-black min-w-[120px] transition-all duration-300 scale-105 text-center";
+                        
+                        setTimeout(() => checkAnswer(idx), 800);
+                    };
+                    optionsContainer.appendChild(btn);
+                });
+
+            } else {
+                document.getElementById('quiz-question-container').classList.remove('hidden');
+                document.getElementById('dnd-slot-container').classList.add('hidden');
+                document.getElementById('quiz-question-text').innerText = qObj.q;
+
+                qObj.a.forEach((opt, idx) => {
+                    const btn = document.createElement('button');
+                    btn.className = "w-full p-5 bg-white/5 hover:bg-blue-500/10 hover:border-blue-500/30 active:scale-98 rounded-2xl font-bold text-xl border border-white/10 transition-all text-right pr-6 focus:outline-none focus:ring-2 focus:ring-blue-500";
+                    btn.innerHTML = `<span class="inline-block w-8 h-8 rounded-full bg-white/5 border border-white/10 text-center leading-8 text-xs text-slate-400 mr-2 ml-4">${String.fromCharCode(65 + idx)}</span> ${opt}`;
+                    btn.onclick = () => checkAnswer(idx);
+                    optionsContainer.appendChild(btn);
+                });
+            }
+        }
+
+        function checkAnswer(selectedIdx) {
+            const qObj = state.shuffledQuestions[state.currentQuestionIndex];
+            const isCorrect = selectedIdx === qObj.correct;
+            
+            state.userAnswers.push({
+                q: qObj.q,
+                chosen: qObj.a[selectedIdx],
+                correctAnswer: qObj.a[qObj.correct],
+                correct: isCorrect
+            });
+
+            const btns = document.getElementById('quiz-options-grid').querySelectorAll('button');
+            btns.forEach(b => b.disabled = true);
+
+            const feedback = document.getElementById('quiz-feedback');
+            feedback.classList.remove('hidden', 'bg-green-500/20', 'text-green-300', 'bg-red-500/20', 'text-red-300', 'border-green-500/30', 'border-red-500/30');
+
+            const quizAvatarBox = document.getElementById('quiz-avatar-container');
+            const companionName = document.getElementById('quiz-avatar-name').innerText;
+
+            if (isCorrect) {
+                playSound('correct');
+                feedback.innerText = "صحيح! أحسنت إجابة موفقة. 🎉";
+                feedback.classList.add('bg-green-500/20', 'text-green-300', 'border', 'border-green-500/30');
+                state.score++;
+                quizAvatarBox.innerHTML = getAvatarSVG(companionName, 'happy');
+            } else {
+                playSound('wrong');
+                feedback.innerText = `خطأ! الإجابة الصحيحة هي: ${qObj.a[qObj.correct]}`;
+                feedback.classList.add('bg-red-500/20', 'text-red-300', 'border', 'border-red-500/30');
+                quizAvatarBox.innerHTML = getAvatarSVG(companionName, 'confused');
+            }
+
+            setTimeout(() => {
+                state.currentQuestionIndex++;
+                if (state.currentQuestionIndex < state.shuffledQuestions.length) {
+                    renderQuestion();
+                } else {
+                    transitionScreen(() => {
+                        showReview();
+                    });
+                }
+            }, 1800);
+        }
+
+        // DISPLAY EVALUATION AND REVIEW SUMMARY
+        function showReview() {
+            document.getElementById('quiz-screen').classList.add('hidden');
+            const reviewScreen = document.getElementById('review-screen');
+            reviewScreen.classList.remove('hidden');
+
+            const ep = state.currentEpisode;
+            localStorage.setItem(ep.progressKey, state.score);
+
+            let correctReviewTitle = `تم إكمال ${ep.title}!`;
+            document.getElementById('review-title').innerText = correctReviewTitle;
+            document.getElementById('review-score-txt').innerText = `لقد حصلت على ${state.score} من ${state.shuffledQuestions.length} سؤال`;
+
+            const breakdown = document.getElementById('review-breakdown');
+            breakdown.innerHTML = '';
+
+            state.userAnswers.forEach((ans, i) => {
+                const item = document.createElement('div');
+                item.className = `p-4 rounded-2xl border ${ans.correct ? 'bg-green-500/10 border-green-500/20 text-green-300' : 'bg-red-500/10 border-red-500/20 text-red-300'}`;
+                
+                item.innerHTML = `
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="w-6 h-6 rounded-lg flex items-center justify-center text-xs font-bold ${ans.correct ? 'bg-green-500/20' : 'bg-red-900/40'}">${i + 1}</span>
+                        <h4 class="font-bold text-white text-lg">${ans.q}</h4>
+                    </div>
+                    <div class="text-sm mt-2 flex flex-col gap-1 pr-8">
+                        <p>إجابتك: <span class="font-bold">${ans.chosen || "لم تجب"}</span></p>
+                        ${!ans.correct ? `<p class="text-slate-300">الإجابة الصحيحة: <span class="font-bold text-green-400">${ans.correctAnswer}</span></p>` : ''}
+                    </div>
+                `;
+                breakdown.appendChild(item);
+            });
+
+            const nextEpIndex = episodesData.findIndex(e => e.id === ep.id) + 1;
+            const actionBtn = document.getElementById('review-action-btn');
+
+            if (nextEpIndex < episodesData.length) {
+                const nextEp = episodesData[nextEpIndex];
+                
+                if (!state.unlockedEpisodes.includes(nextEp.id)) {
+                    state.unlockedEpisodes.push(nextEp.id);
+                    saveUnlocked();
+                    playSound('unlock');
+                    showToast(`🔓 تم فتح ${nextEp.title} بنجاح!`);
+                }
+
+                actionBtn.innerText = "الحلقة التالية ➔";
+                actionBtn.onclick = () => {
+                    startEpisode(nextEp.id);
+                };
+            } else {
+                actionBtn.innerText = "نهاية المغامرة 🏆";
+                actionBtn.onclick = () => {
+                    showFinalVictory();
+                };
+            }
+        }
+
+        function showFinalVictory() {
+            playSound('unlock');
+            
+            const breakdown = document.getElementById('review-breakdown');
+            breakdown.innerHTML = `
+                <div class="text-center p-8 glass rounded-3xl border border-yellow-500/20 flex flex-col items-center">
+                    <span class="text-7xl mb-6 float-anim">👑</span>
+                    <h3 class="text-3xl font-black text-yellow-400 mb-4">تهانينا الحارة!</h3>
+                    <p class="text-xl text-slate-200 leading-relaxed max-w-lg mb-6">
+                        لقد أكملت جميع حلقات "جامعة AUSI: رحلة النحو الكبرى" بنجاح واكتسبت جميع مفاتيح النحو الأربعة! أنت الآن من كبار حماة وعلماء اللغة العربية في الأكاديمية!
+                    </p>
+                    <div class="flex gap-4 items-center justify-center bg-yellow-500/10 border border-yellow-500/20 px-6 py-3 rounded-full">
+                        <span class="text-xl">🏆</span>
+                        <span class="text-yellow-300 font-bold">بطل الأكاديمية الرسمي</span>
+                    </div>
+                </div>
+            `;
+
+            const actionBtn = document.getElementById('review-action-btn');
+            actionBtn.innerText = "العودة للقاعة الرئيسية";
+            actionBtn.onclick = () => {
+                exitToDashboard();
+            };
+        }
+    </script>
+</body>
+</html>
